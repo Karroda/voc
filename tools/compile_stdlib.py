@@ -214,7 +214,7 @@ def update_repo():
 
 def write_file(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, 'w') as f:
+    with open(path, 'w', encoding='utf-8') as f:
         f.write(content)
 
 
@@ -261,10 +261,10 @@ def run_smoke_test(mod_name, output_path):
         if py_stdout == voc_stdout and py_stderr == voc_stderr:
             write_result_file(output_path, '.test-works', stdout.decode('utf-8'))
         else:
-            write_result_file(output_path, '.test-fails-voc_stdout', voc_stdout.decode('utf-8'))
-            write_result_file(output_path, '.test-fails-voc_stderr', voc_stderr.decode('utf-8'))
-            write_result_file(output_path, '.test-fails-py_stdout', py_stdout.decode('utf-8'))
-            write_result_file(output_path, '.test-fails-py_stderr', py_stderr.decode('utf-8'))
+            write_result_file(output_path, '.test-fails-voc_stdout', voc_stdout.decode('utf-8', 'ignore'))
+            write_result_file(output_path, '.test-fails-voc_stderr', voc_stderr.decode('utf-8', 'ignore'))
+            write_result_file(output_path, '.test-fails-py_stdout', py_stdout.decode('utf-8', 'ignore'))
+            write_result_file(output_path, '.test-fails-py_stderr', py_stderr.decode('utf-8', 'ignore'))
 
 
 def _compile_module(args):
